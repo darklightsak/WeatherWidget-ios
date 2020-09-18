@@ -23,7 +23,7 @@ class WeatherService {
             }
             
             completion(.success(self.getWeatherResponse(fromData: data)))
-        }
+        }.resume()
     }
     
     private func getWeatherResponse(fromData data: Data) -> [Weather]? {

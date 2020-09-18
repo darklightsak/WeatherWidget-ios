@@ -11,18 +11,23 @@ import SwiftUI
 struct WeatherEntryView: View {
     let entry: WeatherEntry
     var body: some View {
-        VStack {
-            Text("San Francisco")
-            Text("\(entry.weather.temperature)º\(entry.weather.unit)")
-                .font(.largeTitle)
-            Text(getWeatherIcon(conditionString: entry.weather.description)).padding(.top, 10)
-            Text(entry.weather.description)
-                .font(.footnote)
-            HStack {
-                Spacer()
-                Text("updated: \(entry.date.timeOnly())")
-            }
-        }
+        ZStack {
+            VStack {
+                Text("San Francisco")
+                Text("\(entry.weather.temperature)º\(entry.weather.unit)")
+                    .font(.largeTitle)
+                Text(getWeatherIcon(conditionString: entry.weather.description))
+                    .padding(.top, 2)
+                Text(entry.weather.description)
+                    .font(.footnote)
+                HStack {
+                    Spacer()
+                    Text("updated: \(entry.date.timeOnly())")
+                        .font(.system(size: 12))
+                        .foregroundColor(Color.gray.opacity(0.5))
+                }
+            }.padding()
+        }.edgesIgnoringSafeArea(.all)
     }
     
     func getWeatherIcon(conditionString: String) -> String {
